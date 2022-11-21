@@ -1,22 +1,48 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SubTitle from '../Regular/SubTitle';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Button, Spinner } from 'react-bootstrap';
 import BarndCard from './BarndCard';
-import brand1 from '../images/brand1.png'
-import brand2 from '../images/brand2.png'
-import brand3 from '../images/brand3.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { BrandAction } from '../Reducer/Actions/BrandActions';
 
 const BarndHome = ({title}) => {
+
+  const dispatch = useDispatch()
+
+  const brand = useSelector(state => state.allBrandRed.brand)
+  const loading = useSelector(state => state.allBrandRed.loading)
+
+  useEffect(() => {
+    dispatch(BrandAction())
+  }, [dispatch])
+
   return (
     <Container>
     <SubTitle title={title} text='More' path='/BrandPages'/>
     <Row>
-    <BarndCard img={brand1}/>
-    <BarndCard img={brand2}/>
-    <BarndCard img={brand3}/>
-    <BarndCard img={brand1}/>
-    <BarndCard img={brand3}/>
-    <BarndCard img={brand2}/>
+    {
+      loading === false ? (
+        brand.data ? (
+        brand.data.slice(0, 6).map((e, index)=> {
+          return (
+            <BarndCard 
+            key={index}
+            img={e.image}
+            />
+          )
+      })
+      ) : (<h4>No Data Found</h4>)
+      ) : (
+        <Button variant="primary" disabled>
+        <Spinner
+        as="span"
+        animation="grow"
+        size="sm"
+        role="status"
+        aria-hidden="true"/>
+        Loading...
+        </Button>)
+    }
     </Row>
     </Container>
   )
