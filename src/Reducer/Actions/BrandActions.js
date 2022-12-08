@@ -1,4 +1,4 @@
-import { GET_ALL_BRAND, CREATE_BRAND, GET_ERROR } from '../types/Types';
+import {GET_ALL_BRAND, CREATE_BRAND, GET_ONE_BRAND, GET_ERROR, GET_ONE_CATEGORY} from '../types/Types';
 import baseUrl from "../../Api/baseURL";
 import { sendDataImg } from "../../hooks/useSendData";
 
@@ -50,5 +50,22 @@ export const CreateBrandAction = (formdata)=> async (dispatch)=> {
         type: GET_ERROR,
         payload: 'Error' + e
       })
+  }
+}
+
+// Func => Get One Brand Data
+export const GetOneBrandAction = (id)=> async (dispatch)=> {
+  try {
+    const res = await baseUrl.get(`/api/v1/brands/${id}`)
+
+    dispatch ({
+      type: GET_ONE_BRAND,
+      payload: res
+    })
+  } catch (e) {
+    dispatch ({
+      type: GET_ERROR,
+      payload: 'Error' + e
+    })
   }
 }

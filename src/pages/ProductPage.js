@@ -5,22 +5,26 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SideFilter from '../Regular/SideFilter';
 import ProductContainer from '../product/ProductContainer';
 import PaginationReact from '../component/HomeComp/PaginationReact';
+import SearchProductHook from "../hookAbbreviation/ProductHooks/SearchProductHooks";
 
 const ProductPage = () => {
+
+  const [allProducts, , pageCount, getPage, getProduct, results] = SearchProductHook()
+
   return (
     <div style={{minHeight:'752px'}}>
     <ProductSubNav />
     <Container>
-    <ProductDropTitle title='500 Results'/>
+    <ProductDropTitle click={getProduct} title={`${results} Results`}/>
     <Row className='d-flex flex-row justify-content-between'>
     <Col xs='3' sm='2' md='2'>
     <SideFilter />
     </Col>
     <Col xs='9' sm='9' md='10'>
-    <ProductContainer />
+    <ProductContainer item={allProducts} />
     </Col>
     </Row>
-    <PaginationReact />
+    <PaginationReact pageCount={pageCount} onPress={getPage}/>
     </Container>
     </div>
   )

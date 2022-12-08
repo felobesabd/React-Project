@@ -4,26 +4,24 @@ import ImageGallery from 'react-image-gallery';
 import mobile3 from '../images/mobile3.jpeg'
 import mobile1 from '../images/mobile1.png'
 import mobile2 from '../images/mobile2.png'
+import GetOneProductByIdHook from "../hookAbbreviation/ProductHooks/GetOneProductById";
 
-const ProductImg = () => {
-    const images = [
-        {
-        original: `${mobile1}`,
-        // thumbnail: 'https://picsum.photos/id/1018/250/150/',
-        },
-        {
-        original: `${mobile2}`,
-        // thumbnail: 'https://picsum.photos/id/1015/250/150/',
-        },
-        {
-        original: `${mobile3}`,
-        // thumbnail: 'https://picsum.photos/id/1019/250/150/',
-        },
-    ];
+const ProductImg = ({id}) => {
+    const [item] = GetOneProductByIdHook(id)
+
+    let images = []
+    if (item.images) {
+        images = item.images.map((img)=> {
+            return { original: img }
+        })
+    } else {
+        images = []
+    }
+
 
   return (
     <div className='product-img pt-2 d-flex justify-content-center  align-items-center'>
-    <ImageGallery items={images} 
+    <ImageGallery items={images}
     defaultImage={mobile1}
     showFullscreenButton={false}
     isRTL={true}

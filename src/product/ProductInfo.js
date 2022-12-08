@@ -1,16 +1,23 @@
 import React from 'react'
 import { Row,Col, Button } from 'react-bootstrap'
+import GetOneProductByIdHook from "../hookAbbreviation/ProductHooks/GetOneProductById";
+import {useParams} from "react-router-dom";
 
 const ProductInfo = () => {
+    const { id } = useParams()
+
+    const [item, cat, brand, products] = GetOneProductByIdHook(id)
+
     return (
         <div>
         <Row className="mt-2">
-            <div className="cat-text">Electronic :</div>
+            <div className="cat-text">{cat.name} :</div>
         </Row>
         <Row>
             <Col md="8">
             <div className="cat-title d-inline">
-            iPhone XR 128GB 4G LTE With Face App<div className="cat-rate d-inline mx-3">4.5</div>
+                {item.title}
+                <div className="cat-rate d-inline mx-3">{item.ratingsQuantity}</div>
             </div>
             </Col>
         </Row>
@@ -22,15 +29,19 @@ const ProductInfo = () => {
         </Row>
         <Row>
             <Col md="8" className="mt-1 d-flex">
-            <div
-                className="color ms-2 border"
-                style={{ backgroundColor: "#E52C2C" }}></div>
-            <div
-                className="color ms-2 border "
-                style={{ backgroundColor: "white" }}></div>
-            <div
-                className="color ms-2 border"
-                style={{ backgroundColor: "black" }}></div>
+                {
+                    item.availableColors ? (
+                        item.availableColors.map((color, index)=> {
+                            return (
+                                <div
+                                    key={index}
+                                    className="color ms-2 border"
+                                    style={{ backgroundColor: color }}>
+                                </div>
+                            )
+                        })
+                    ) :null
+                }
             </Col>
         </Row>
 
@@ -40,24 +51,14 @@ const ProductInfo = () => {
         <Row className="mt-2">
             <Col md="10">
             <div className="product-description d-inline">
-            It features a dual SIM physical card and an e-SIM card that you can unlock
-            your iPhone and easily log into applications, accounts, etc.,
-            The Face ID feature is the fastest and safest for fingerprint authentication
-            The face features the A12 Bionic chip, which is the smartest and most powerful chip in phones
-            Smartphones The world's most famous camera has ushered in a new era of photography
-            Photography where the innovative ISP sensor and actuator work
-            Neuron, enabling you to capture never before before with a single-lens camera
-            Makes the people in the front in a precise focus range as opposed to the range
-            blurred background overview.
+                {item.description}
             </div>
             </Col>
         </Row>
         <Row className="mt-4">
             <Col md="12 d-flex justify-content-start">
-            <Button className="btn btn-info d-inline px-3 py-3 border">
-            34000EGP</Button>
-            <Button className="btn btn-danger px-3 py-3 d-inline mx-3">
-            Add Cart</Button>
+            <Button className="btn btn-info d-inline px-3 py-3 border">{item.price} EGP</Button>
+            <Button className="btn btn-danger px-3 py-3 d-inline mx-3">Add Cart</Button>
             </Col>
         </Row>
     </div>

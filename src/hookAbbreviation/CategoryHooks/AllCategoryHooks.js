@@ -7,14 +7,16 @@ const AllCategoryHooks = () => {
 
   useEffect(() => {
     dispatch(CategoryAction(18))
-  }, [dispatch])
+  }, [])
 
   const category = useSelector(state => state.allCategoryRed.category)
   const loading = useSelector(state => state.allCategoryRed.loading)
 
   let pageCount = 0;
-  if (category.paginationResult)
-    pageCount = category.paginationResult.numberOfPages;
+  try {
+    if (category.paginationResult)
+      pageCount = category.paginationResult.numberOfPages;
+  } catch (e) {}
 
   const getPage = (page)=> {
     dispatch(CategoryPagesAction(page))

@@ -1,9 +1,15 @@
 import React from 'react'
 import UnopDropdown from 'unop-react-dropdown'
 
-const ProductDropTitle = ({title}) => {
+const ProductDropTitle = ({title, click}) => {
     const handler = ()=>{ };
-  return (
+
+    function clickedMe(key) {
+        localStorage.setItem('sortSearch', key)
+        click()
+    }
+
+    return (
     <div className='d-flex pt-4 justify-content-between'>
     <div className='sub-title'>{title}</div>
     <UnopDropdown
@@ -19,12 +25,21 @@ const ProductDropTitle = ({title}) => {
         align="CENTER"
         hover
         >
+
         <div className='drop-filter'>
-            <div className='border-bottom drop-item'>Top Silling</div>
-            <div className='border-bottom drop-item'>Top Prices</div>
-            <div className='border-bottom drop-item'>Down Prices</div>
-            <div className='border-bottom drop-item'>Top Ratings</div>
+            <div onClick={()=> clickedMe('Normal')}
+                 className='border-bottom drop-item'>Normal</div>
+            <div onClick={()=> clickedMe('Top Selling')}
+                 className='border-bottom drop-item'>Top Selling</div>
+            <div onClick={()=> clickedMe('Top RATING')}
+                 className='border-bottom drop-item'>Top RATING</div>
+            <div onClick={()=> clickedMe('PRICE: LOW TO HIGH')}
+                 className='border-bottom drop-item'>PRICE: LOW TO HIGH</div>
+            <div onClick={()=> clickedMe('PRICE: HIGH TO LOW')}
+                 className='border-bottom drop-item'>PRICE: HIGH TO LOW</div>
+
         </div>
+
         </UnopDropdown>
             </div>
   )

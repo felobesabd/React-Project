@@ -24,6 +24,7 @@ import UserAddressPage from './pages/User Pages/UserAddressPage';
 import UserEditAddressPage from './pages/User Pages/UserEditAddressPage';
 import UserAddNewAddressPage from './pages/User Pages/UserAddNewAddressPage';
 import UserProfilePage from './pages/User Pages/UserProfilePage';
+import AdminEditProductDetailsPage from "./pages/Admin Pages/AdminEditProductDetails";
 
 let App = () => {
     return (
@@ -37,7 +38,7 @@ let App = () => {
             <Route path="/AllCategory" element={<AllCategory />} />
             <Route path="/BrandPages" element={<BrandPages />} />
             <Route path="/ProductPage" element={<ProductPage />} />
-            <Route path="/ProductDetails:id" element={<ProductDetails />} />
+            <Route path="/ProductDetails/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<CartPages />} />
             <Route path="/pay" element={<PayPage />} />
             <Route path="/admin/allproducts" element={<AdminPages />} />
@@ -53,6 +54,7 @@ let App = () => {
             <Route path="/user/edit-address" element={<UserEditAddressPage />} />
             <Route path="/user/add-address" element={<UserAddNewAddressPage />} />
             <Route path="/user/profile" element={<UserProfilePage />} />
+            <Route path="/editProductDetails/:id" element={<AdminEditProductDetailsPage />} />
             </Routes>
             </BrowserRouter>
             <FooterSec />

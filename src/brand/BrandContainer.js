@@ -4,9 +4,6 @@ import BarndCard from '../brand/BarndCard';
 
 const BrandContainer = ({brand, loading}) => {
 
-  console.log(brand);
-  console.log(loading);
-
   return (
     <Container>
     <h3 className='my-2'>All Brands</h3>

@@ -152,7 +152,7 @@ a {
     color: #ffc107;
 }
 .card-title {
-    margin-top: 40px;
+    margin-top: 10px;
     color: #555550;
     font-size: 16px;
     letter-spacing: 0;
@@ -160,14 +160,14 @@ a {
 }
 .card-price {
     color: #272727;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: bold;
     letter-spacing: 0;
     line-height: 28px;
 }
 .card-currency {
     color: #555550;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 0;
     line-height: 24px;
 }
@@ -177,6 +177,9 @@ a {
     font-weight: bold;
     letter-spacing: 0;
     line-height: 19px;
+}
+.card-body {
+    padding: 0px 10px !important;
 }
 /* Start discount */
 .discount-backcolor {

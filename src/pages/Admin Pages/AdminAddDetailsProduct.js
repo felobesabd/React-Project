@@ -139,7 +139,7 @@ const AdminAddDetailsProduct = () => {
                   ) : null
                 }
                 <img src={add} alt="" width="30px" height="35px"
-                     style={{cursor:'pointer'}} onClick={showColor} />
+                    style={{cursor:'pointer'}} onClick={showColor} />
                 {
                   statusCompact === true ? <CompactPicker onChangeComplete={onColorSelected} /> : null
                 }
@@ -149,7 +149,7 @@ const AdminAddDetailsProduct = () => {
     <Row>
         <Col sm="8" className="d-flex justify-content-end">
             {
-                 loading === false ?
+                loading === false ?
                     (
                         <Button variant="btn-save d-inline mt-2" disabled>
                             <Spinner
@@ -161,9 +161,9 @@ const AdminAddDetailsProduct = () => {
                             />
                         </Button>
                     ) : <button
-                         onClick={handleData}
-                         className="btn-save d-inline my-2">Save Changes
-                     </button>
+                        onClick={handleData}
+                        className="btn-save d-inline my-2">Save Changes
+                    </button>
             }
 
         </Col>

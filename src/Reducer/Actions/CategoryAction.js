@@ -1,14 +1,15 @@
-import { CREATE_CATEGORY, GET_ALL_CATEGORY, GET_ERROR } from "../types/Types";
+import {CREATE_CATEGORY, GET_ALL_CATEGORY, GET_ONE_CATEGORY, GET_ERROR, GET_ALL_BRAND} from "../types/Types";
 import baseUrl from "../../Api/baseURL";
 import { sendDataImg } from "../../hooks/useSendData";
+import getData from "../../hooks/useGetData";
 
 // Func => Get All Data
 export const CategoryAction= (limit)=> async (dispatch)=> {
     try {
-        const res = await baseUrl.get(`/api/v1/categories?limit=${limit}`)
+        const res = await getData(`/api/v1/categories?limit=${limit}`)
         dispatch ({
             type: GET_ALL_CATEGORY,
-            payload: res.data
+            payload: res
         })
     } catch (e) {
         dispatch ({
@@ -42,6 +43,23 @@ export const CreateCategoryAction = (formdata)=> async (dispatch)=> {
             type: CREATE_CATEGORY,
             payload: res,
             loading: true
+        })
+    } catch (e) {
+        dispatch ({
+            type: GET_ERROR,
+            payload: 'Error' + e
+        })
+    }
+}
+
+// Func => Get One Category Data
+export const GetOneCategoryAction = (id)=> async (dispatch)=> {
+    try {
+        const res = await baseUrl.get(`/api/v1/categories/${id}`)
+
+        dispatch ({
+            type: GET_ONE_CATEGORY,
+            payload: res
         })
     } catch (e) {
         dispatch ({

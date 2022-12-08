@@ -7,6 +7,7 @@ import HomeCategoryHooks from './../../hookAbbreviation/CategoryHooks/HomeCatego
 const HomeCate = () => {
 
   const [category, loading] = HomeCategoryHooks()
+  console.log(loading)
 
   return (
     <Container>
@@ -17,11 +18,11 @@ const HomeCate = () => {
         category.data ? (
           category.data.slice(0, 6).map((e, index)=> {
             return(
-              <CategoryCard 
-              key={index} 
-              background='#6666' 
-              img={e.image} 
-              title={e.name}/>) 
+              <CategoryCard
+              key={index}
+              background='#6666'
+              img={e.image}
+              title={e.name}/>)
             })
             ):(<h4>No Data Found</h4>)
             ):(
@@ -33,7 +34,8 @@ const HomeCate = () => {
               role="status"
               aria-hidden="true"/>
               Loading...
-              </Button>)
+              </Button>
+      )
     }
     </Row>
   </Container>

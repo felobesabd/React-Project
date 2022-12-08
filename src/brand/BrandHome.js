@@ -9,12 +9,12 @@ const BarndHome = ({title}) => {
 
   const dispatch = useDispatch()
 
-  const brand = useSelector(state => state.allBrandRed.brand)
-  const loading = useSelector(state => state.allBrandRed.loading)
-
   useEffect(() => {
     dispatch(BrandAction())
   }, [dispatch])
+
+  const brand = useSelector(state => state.allBrandRed.brand)
+  const loading = useSelector(state => state.allBrandRed.loading)
 
   return (
     <Container>
@@ -25,7 +25,7 @@ const BarndHome = ({title}) => {
         brand.data ? (
         brand.data.slice(0, 6).map((e, index)=> {
           return (
-            <BarndCard 
+            <BarndCard
             key={index}
             img={e.image}
             />

@@ -7,14 +7,17 @@ const AllBrandHooks = () => {
 
   useEffect(() => {
     dispatch(BrandAction(12))
-  }, [dispatch])
+  }, [])
 
   const brand = useSelector(state => state.allBrandRed.brand)
   const loading = useSelector(state => state.allBrandRed.loading)
 
   let pageCount = 0;
-  if (brand.paginationResult)
-    pageCount = brand.paginationResult.numberOfPages;
+  try {
+    if (brand.paginationResult)
+      pageCount = brand.paginationResult.numberOfPages;
+  } catch (e) {}
+
 
   const getPage = (page)=> {
     dispatch(BrandPagesAction(page))
